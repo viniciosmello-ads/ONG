@@ -1,0 +1,690 @@
+/* ==========================================================================
+   DESIGN SYSTEM - ONG ESPORTE E VIDA
+   Arquivo: css/style.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DECLARAÇÃO DE VARIÁVEIS CUSTOMIZADAS (:root)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Cores Primárias e Institucionais */
+  --color-primary-dark: #2164A7;     /* Azul Oceano */
+  --color-primary-light: #0384D8;    /* Azul Vibrante */
+
+  /* Cores Secundárias e Ação */
+  --color-secondary-green: #29A33E;  /* Verde Esperança */
+  --color-accent-yellow: #FEB904;    /* Amarelo Energia */
+  --color-accent-orange: #FC7006;    /* Laranja Vibração */
+
+  /* Cores Neutras */
+  --color-neutral-bg: #F4F2EF;       /* Off-White / Fundo Principal */
+  --color-neutral-text: #040306;     /* Preto Quase Puro */
+  --color-neutral-border: #D8D4D8;   /* Cinza Suave */
+  --color-white: #FFFFFF;
+
+  /* Escala Tipográfica Modular */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-md: 1rem;       /* 16px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 1.75rem;    /* 28px */
+
+  --font-family-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Espaçamento Modular (Base 8px) */
+  --spacing-xs: 0.25rem;  /* 4px */
+  --spacing-sm: 0.5rem;   /* 8px */
+  --spacing-md: 1rem;     /* 16px */
+  --spacing-lg: 1.5rem;   /* 24px */
+  --spacing-xl: 2.5rem;   /* 40px */
+
+  /* Arredondamento de Bordas */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   2. REINICIALIZAÇÃO E BASE (MOBILE FIRST - PADRÃO)
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  line-height: 1.6;
+  color: var(--color-neutral-text);
+  background-color: var(--color-neutral-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Grid de 12 Colunas - Padrão Mobile (Tudo Ocupa 100% da Largura) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+  grid-column: span 12;
+}
+
+/* --------------------------------------------------------------------------
+   3. ESTILIZAÇÃO DOS ELEMENTOS INSTITUCIONAIS E FORMULÁRIOS
+   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   MÓDULO DE NAVEGAÇÃO CONDENSADA (HAMBÚRGUER PURAMENTE EM CSS)
+   ========================================================================== */
+
+header {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: var(--spacing-md);
+  border-bottom: 4px solid var(--color-secondary-green);
+  position: relative;
+}
+
+/* Atualização para empilhar o título e o menu verticalmente */
+.header-container {
+  display: flex;
+  flex-direction: column; /* Força o alinhamento em coluna (menu abaixo do h1) */
+  align-items: center;    /* Centraliza o h1 e o menu horizontalmente */
+  gap: var(--spacing-sm);  /* Espaçamento sutil entre o h1 e a navegação */
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+/* Oculta visualmente o Checkbox de Controle */
+.menu-toggle-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Botão do Hambúrguer (Visível por Padrão em Dispositivos Móveis) */
+.menu-hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.menu-hamburger-btn .bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-white);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   LÓGICA E OCULTAÇÃO NO DISPOSITIVO MÓVEL (< 1024px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 1023px) {
+  /* Oculta a lista de links por padrão em telas móveis */
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-primary-dark);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .nav-menu a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: block;
+    border-radius: var(--border-radius-sm);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  /* ACIONAMENTO VIA PSEUDO-CLASSE :checked */
+  /* Quando o Checkbox estiver marcado, exibe o menu expandido */
+  .menu-toggle-checkbox:checked ~ .nav-menu {
+    max-height: 300px;
+    opacity: 1;
+  }
+
+  /* Animação das barras do ícone Hambúrguer transformando em 'X' */
+  .menu-toggle-checkbox:checked ~ .menu-hamburger-btn .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .menu-toggle-checkbox:checked ~ .menu-hamburger-btn .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle-checkbox:checked ~ .menu-hamburger-btn .bar:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   RESERVA DE LAYOUT EM DESKTOPS E LAPTOPS (>= 1024px)
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 1024px) {
+  /* Oculta o ícone hambúrguer em telas grandes */
+  .menu-hamburger-btn {
+    display: none;
+  }
+
+  /* Restaura o menu inline horizontal */
+  .nav-menu {
+    position: static;
+    max-height: none !important;
+    opacity: 1 !important;
+    overflow: visible;
+  }
+
+  .nav-menu ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--spacing-sm);
+  }
+
+  .nav-menu a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    background-color: transparent;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu a:focus {
+    background-color: var(--color-primary-light);
+    outline: 2px solid var(--color-accent-yellow);
+  }
+}
+
+nav table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+nav th {
+  padding: 0 var(--spacing-xs);
+}
+
+nav a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  display: block;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: var(--color-primary-light);
+  color: var(--color-white);
+  outline: 2px solid var(--color-accent-yellow);
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+section {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-neutral-border);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+h2 {
+  font-size: var(--font-size-lg);
+  color: var(--color-primary-dark);
+  border-left: 4px solid var(--color-secondary-green);
+  padding-left: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+h3 {
+  font-size: var(--font-size-md);
+  color: var(--color-primary-light);
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+article {
+  background-color: var(--color-neutral-bg);
+  border-left: 3px solid var(--color-primary-light);
+  padding: var(--spacing-md);
+  border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+  height: 100%;
+}
+
+ul {
+  margin-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+}
+
+figure {
+  margin: var(--spacing-md) 0;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-neutral-border);
+}
+
+figcaption {
+  font-size: var(--font-size-xs);
+  color: #555;
+  margin-top: var(--spacing-xs);
+  font-style: italic;
+}
+
+address {
+  font-style: normal;
+  background-color: var(--color-neutral-bg);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-neutral-border);
+}
+
+/* Formulário de Cadastro */
+form {
+  margin-top: var(--spacing-md);
+}
+
+fieldset {
+  border: 1px solid var(--color-neutral-border);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  background-color: var(--color-white);
+}
+
+legend {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  padding: 0 var(--spacing-sm);
+}
+
+form .field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-neutral-text);
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-neutral-border);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-neutral-bg);
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(3, 132, 216, 0.2);
+  background-color: var(--color-white);
+}
+
+button {
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  margin-bottom: var(--spacing-sm);
+}
+
+button[type="submit"] {
+  background-color: var(--color-accent-orange);
+  color: var(--color-white);
+}
+
+button[type="reset"] {
+  background-color: var(--color-neutral-bg);
+  color: var(--color-neutral-text);
+  border: 1px solid var(--color-neutral-border);
+}
+
+footer {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  text-align: center;
+  padding: var(--spacing-md);
+  font-size: var(--font-size-xs);
+  margin-top: auto;
+  border-top: 2px solid var(--color-accent-yellow);
+}
+
+/* ==========================================================================
+   4. DECLARAÇÃO DOS 5 CENÁRIOS ADAPTATIVOS (@media queries)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CENÁRIO 1: MOBILE COMPACTO (max-width: 479px)
+   Comportamento: Otimização de espaço para telas muito pequenas.
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 479px) {
+  :root {
+    --spacing-md: 0.75rem; /* Ajusta espaçamento interno para maximizar área útil */
+  }
+
+  header h1 {
+    font-size: 1.35rem;
+  }
+
+  nav a {
+    padding: var(--spacing-xs);
+    font-size: 0.8rem;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CENÁRIO 2: DISPOSITIVOS MÓVEIS LARGOS / PHABLETS (min-width: 480px)
+   Comportamento: Permite divisão de campos curtos de formulário em 2 colunas.
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 480px) {
+  .col-sm-6  { grid-column: span 6; }
+  .col-sm-12 { grid-column: span 12; }
+
+  button {
+    width: auto; /* Botões deixam de ocupar 100% da largura */
+    display: inline-block;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CENÁRIO 3: TABLETS E ECRÃS INTERMEDIÁRIOS (min-width: 768px)
+   Comportamento: Grade em 2 e 3 colunas para cartões e campos de formulário.
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 768px) {
+  main {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  section {
+    padding: var(--spacing-lg);
+  }
+
+  h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .col-md-3  { grid-column: span 3; }
+  .col-md-4  { grid-column: span 4; }
+  .col-md-5  { grid-column: span 5; }
+  .col-md-6  { grid-column: span 6; }
+  .col-md-8  { grid-column: span 8; }
+  .col-md-12 { grid-column: span 12; }
+
+  nav a {
+    font-size: var(--font-size-md);
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+
+  fieldset {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CENÁRIO 4: DESKTOPS E LAPTOPS PADRÃO (min-width: 1024px)
+   Comportamento: Cabeçalho em linha (Flexbox) e distribuição total em 12 colunas.
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 1024px) {
+  main {
+    max-width: 1140px;
+  }
+
+  .col-lg-2  { grid-column: span 2; }
+  .col-lg-3  { grid-column: span 3; }
+  .col-lg-4  { grid-column: span 4; }
+  .col-lg-5  { grid-column: span 5; }
+  .col-lg-6  { grid-column: span 6; }
+  .col-lg-7  { grid-column: span 7; }
+  .col-lg-8  { grid-column: span 8; }
+  .col-lg-9  { grid-column: span 9; }
+  .col-lg-12 { grid-column: span 12; }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding: var(--spacing-lg) var(--spacing-xl);
+  }
+
+  header h1 {
+    margin-bottom: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CENÁRIO 5: DESKTOPS PANORÂMICOS / ULTRAWIDE (min-width: 1440px)
+   Comportamento: Expansão do container central e ajuste da escala tipográfica.
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 1440px) {
+  :root {
+    --font-size-md: 1.125rem; /* Ajuste sutil na leitura para telas grandes (18px) */
+  }
+
+  main {
+    max-width: 1380px; /* Expande o container principal */
+  }
+
+  .col-xl-3 { grid-column: span 3; }
+  .col-xl-4 { grid-column: span 4; }
+  .col-xl-6 { grid-column: span 6; }
+
+  section {
+    padding: var(--spacing-xl);
+  }
+}
+
+/* ==========================================================================
+   FEEDBACK DE MENSAGEM DE SUCESSO VIA PSEUDO-CLASSE :target (SEM BURLAR VALIDAÇÃO)
+   ========================================================================== */
+
+.mensagem-sucesso-box {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(4, 3, 6, 0.65);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-md);
+}
+
+/* Quando a URL contiver #sucesso (após passar por TODAS as validações obrigatórias) */
+.mensagem-sucesso-box:target {
+  display: flex;
+}
+
+.mensagem-sucesso-conteudo {
+  background-color: var(--color-white);
+  border-top: 6px solid var(--color-secondary-green);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  animation: surgimentoModal 0.3s ease-out;
+}
+
+.mensagem-sucesso-conteudo h3 {
+  color: var(--color-secondary-green);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+.mensagem-sucesso-conteudo p {
+  color: var(--color-neutral-text);
+  margin-bottom: var(--spacing-lg);
+}
+
+.btn-fechar-sucesso {
+  display: inline-block;
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-sm);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-fechar-sucesso:hover {
+  background-color: var(--color-primary-light);
+}
+
+@keyframes surgimentoModal {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   PADRONIZAÇÃO DE FEEDBACK VISUAL DE FORMULÁRIOS (ERRO E SUCESSO)
+   ========================================================================== */
+
+/* 1. Variáveis Nativas de Feedback */
+:root {
+  --color-feedback-error-bg: #FDF2F2;
+  --color-feedback-error-border: #DE350B;
+  --color-feedback-error-text: #BF2600;
+
+  --color-feedback-success-bg: #F3F9F4;
+  --color-feedback-success-border: #29A33E;
+  --color-feedback-success-text: #1E7A2E;
+}
+
+/* 2. Padrão Visual de Erro (Acionado quando o campo é inválido após interagir) */
+input:not(:placeholder-shown):invalid,
+select:not(:focus):invalid,
+textarea:not(:placeholder-shown):invalid {
+  border: 2px solid var(--color-feedback-error-border) !important;
+  background-color: var(--color-feedback-error-bg) !important;
+  color: var(--color-feedback-error-text);
+  box-shadow: 0 0 0 3px rgba(222, 53, 11, 0.15) !important;
+}
+
+/* 3. Padrão Visual de Sucesso (Acionado quando o campo obrigatório está preenchido corretamente) */
+input:not(:placeholder-shown):valid,
+select:valid,
+textarea:not(:placeholder-shown):valid {
+  border: 2px solid var(--color-feedback-success-border);
+  background-color: var(--color-feedback-success-bg);
+  box-shadow: 0 0 0 3px rgba(41, 163, 62, 0.12);
+}
+
+/* 4. Alertas e Caixas de Mensagem Estilizadas */
+.alert-box {
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.alert-box.error {
+  background-color: var(--color-feedback-error-bg);
+  border: 1px solid var(--color-feedback-error-border);
+  color: var(--color-feedback-error-text);
+  border-left: 5px solid var(--color-feedback-error-border);
+}
+
+.alert-box.success {
+  background-color: var(--color-feedback-success-bg);
+  border: 1px solid var(--color-feedback-success-border);
+  color: var(--color-feedback-success-text);
+  border-left: 5px solid var(--color-feedback-success-border);
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seja um Voluntário - ONG Esporte e Vida</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Importação do Chart.js via CDN no <head> -->
+<!-- Subsitua esta linha em index.html, cadastro.html e projetos.html 
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<script src="js/main.js" defer></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <h1>ONG Esporte e Vida</h1>
+
+    <!-- Controle de Toggle via HTML (Checkbox Hack sem JS) -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+    <label for="menu-toggle" class="menu-hamburger-btn" aria-label="Abrir Menu de Navegação">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </label>
+
+    <!-- Lista Semântica de Navegação -->
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main>
+<section>
+  <h2>Cadastro de Colaboradores e Voluntários</h2>
+  <p>Preencha os dados abaixo para fazer parte da nossa rede de apoio ao esporte social.</p>
+
+  <form action="#sucesso" method="POST" id="formCadastro">
+    
+    <!-- Dados Pessoais -->
+    <fieldset>
+      <legend>Dados Pessoais</legend>
+
+      <div class="grid">
+        <div class="field-group col-12 col-md-6">
+          <label for="nome">Nome Completo:</label>
+          <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" minlength="3" maxlength="100" required>
+        </div>
+
+        <div class="field-group col-12 col-md-6">
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+        </div>
+
+        <div class="field-group col-12 col-md-6">
+          <label for="cpf">CPF:</label>
+          <input type="text" id="cpf" name="cpf" placeholder="123.456.789-00" maxlength="14" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" title="Digite um CPF válido no formato 000.000.000-00" required>
+        </div>
+
+        <div class="field-group col-12 col-md-6">
+          <label for="telefone">Telefone / WhatsApp:</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(31) 99999-9999" maxlength="15" pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" title="Digite um telefone válido no formato (XX) XXXXX-XXXX" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Endereço -->
+    <fieldset>
+      <legend>Endereço</legend>
+
+      <div class="grid">
+        <div class="field-group col-12 col-md-8">
+          <label for="logradouro">Rua / Avenida:</label>
+          <input type="text" id="logradouro" name="logradouro" placeholder="Ex: Rua das Flores" required>
+        </div>
+
+        <div class="field-group col-12 col-md-4">
+          <label for="numero">Número:</label>
+          <input type="text" id="numero" name="numero" placeholder="Ex: 123" required>
+        </div>
+
+        <div class="field-group col-12 col-md-5">
+          <label for="cidade">Cidade:</label>
+          <input type="text" id="cidade" name="cidade" placeholder="Ex: Belo Horizonte" required>
+        </div>
+
+        <div class="field-group col-12 col-md-3">
+          <label for="estado">Estado (UF):</label>
+          <input type="text" id="estado" name="estado" placeholder="MG" maxlength="2" pattern="[A-Za-a]{2}" title="Digite a sigla do estado com 2 letras" required>
+        </div>
+
+        <div class="field-group col-12 col-md-4">
+          <label for="cep">CEP:</label>
+          <input type="text" id="cep" name="cep" placeholder="30000-000" maxlength="9" pattern="\d{5}-?\d{3}" title="Digite um CEP válido no formato 00000-000" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Informações de Atuação -->
+    <fieldset>
+      <legend>Atuação do Colaborador</legend>
+
+      <div class="grid">
+        <div class="field-group col-12 col-md-6">
+          <label for="area">Área de Interesse:</label>
+          <select id="area" name="area" required>
+            <option value="">Selecione uma opção...</option>
+            <option value="treinos">Instrução Esportiva e Treinos</option>
+            <option value="logistica">Logística e Eventos</option>
+            <option value="saude">Apoio Médico / Fisioterapia</option>
+            <option value="administrativo">Apoio Administrativo</option>
+          </select>
+        </div>
+
+        <div class="field-group col-12 col-md-6">
+          <label for="disponibilidade">Disponibilidade de Horário:</label>
+          <select id="disponibilidade" name="disponibilidade" required>
+            <option value="">Selecione...</option>
+            <option value="semana_manhas">Dias de semana (Manhã)</option>
+            <option value="semana_tardes">Dias de semana (Tarde)</option>
+            <option value="fins_semana">Finais de semana</option>
+          </select>
+        </div>
+
+        <div class="field-group col-12">
+          <label for="mensagem">Por que você quer ser um voluntário?</label>
+          <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte brevemente sua motivação..."></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <br>
+    
+    <!-- Botão REAL de envio para forçar a validação obrigatória -->
+    <button type="submit">Enviar Cadastro</button>
+    
+    <!-- Botão de Limpar com confirmação de segurança -->
+    <button type="reset" onclick="return confirm('Tem certeza de que deseja limpar todos os campos preenchidos no formulário?');">
+      Limpar Formulário
+    </button>
+
+  </form>
+
+  <!-- Mensagem de Sucesso (Ativada via hash da URL #:target quando o formulário é enviado) -->
+  <div id="sucesso" class="mensagem-sucesso-box">
+    <div class="mensagem-sucesso-conteudo">
+      <h3>✓ Cadastro Enviado com Sucesso!</h3>
+      <p>Obrigado por se juntar à ONG Esporte e Vida. Em breve nossa equipe entrará em contato com você.</p>
+      <a href="cadastro.html" class="btn-fechar-sucesso">Fechar</a>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ONG Esporte e Vida. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>

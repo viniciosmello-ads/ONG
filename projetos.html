@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nossos Projetos - ONG Esporte e Vida</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Importação do Chart.js via CDN no <head> -->
+<!-- Subsitua esta linha em index.html, cadastro.html e projetos.html 
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<script src="js/main.js" defer></script>-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <h1>ONG Esporte e Vida</h1>
+
+    <!-- Controle de Toggle via HTML (Checkbox Hack sem JS) -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+    <label for="menu-toggle" class="menu-hamburger-btn" aria-label="Abrir Menu de Navegação">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </label>
+
+    <!-- Lista Semântica de Navegação -->
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main>
+    <section>
+      <h2>Iniciativas Solidárias</h2>
+      <!-- 3 Artigos distribuídos em 4 colunas cada (3x4 = 12 colunas em Desktop) -->
+      <div class="grid">
+        <article class="col-12 col-md-4">
+          <h3>Futebol Comunitário</h3>
+          <p>Aulas de futebol no contraturno escolar focadas em disciplina, trabalho em equipe e saúde.</p>
+        </article>
+        <article class="col-12 col-md-4">
+          <h3>Basquete para Todos</h3>
+          <p>Inclusão social e desenvolvimento de habilidades motoras através do basquete de rua.</p>
+        </article>
+        <article class="col-12 col-md-4">
+          <h3>Atletismo no Futuro</h3>
+          <p>Treinamentos de corrida e salto para identificação de novos talentos nas comunidades.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="doacoes">
+      <h2>Contribuição Financeira</h2>
+      <p>Sua doação garante a compra de equipamentos esportivos, lanches e uniforme para nossas crianças.</p>
+      
+      <article>
+        <h3>Opções de Doação</h3>
+        <ul>
+          <li><strong>Pix (Chave CNPJ):</strong> 00.123.456/0001-99</li>
+          <li><strong>Transferência Bancária:</strong>
+            <ul>
+              <li>Banco do Brasil (001) | Agência: 1234-5 | Conta Corrente: 98765-4</li>
+              <li>Favorecido: ONG Esporte e Vida</li>
+            </ul>
+          </li>
+          <li><strong>Doação Mensal ou Cartão:</strong> Escolha um valor recorrente em nossa plataforma parceira.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="voluntariado">
+      <h2>Trabalho Voluntário</h2>
+      <p>Você pode doar seu tempo e conhecimento para apoiar nossos projetos.</p>
+      
+      <article>
+        <h3>Como Funciona</h3>
+        <p>Buscamos educadores físicos, psicólogos, fisioterapeutas, organizadores de eventos e apoiadores administrativos.</p>
+        <p>Para se candidatar a uma vaga de voluntariado, preencha o formulário em nossa página dedicada:</p>
+        <p><a href="cadastro.html">Clique aqui para fazer seu Cadastro de Voluntário</a></p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Entre em Contato</h2>
+      <p>Quer saber mais sobre nossas atividades ou como nos apoiar? Fale conosco:</p>
+      
+      <address>
+        <p><strong>Endereço:</strong> Av. dos Esportes, 1000 - Bairro Solidariedade</p>
+        <p><strong>Telefone:</strong> (31) 4004-0000</p>
+        <p><strong>WhatsApp:</strong> (31) 99999-8888</p>
+        <p><strong>E-mail:</strong> contato@esporteevida.org.br</p>
+        <p><strong>Horário de Atendimento:</strong> Segunda a Sexta, das 08h às 18h</p>
+      </address>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ONG Esporte e Vida. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
