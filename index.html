@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG Esporte e Vida</title>
+<link rel="stylesheet" href="css/style.css">
+ <!-- <link href=
+"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+rel="stylesheet"> -->
+<!-- Importação do Chart.js via CDN no <head> -->
+<!-- Subsitua esta linha em index.html, cadastro.html e projetos.html
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<script src="js/main.js" defer></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<script type="module" src="js/main.js"></script>
+ </head>
+<body>
+
+<header>
+  <div class="header-container">
+    <h1>ONG Esporte e Vida</h1>
+
+    <!-- Controle de Toggle via HTML (Checkbox Hack sem JS) -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+    <label for="menu-toggle" class="menu-hamburger-btn" aria-label="Abrir Menu de Navegação">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </label>
+
+    <!-- Lista Semântica de Navegação -->
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main>
+    <section>
+      <h2>Sobre a ONG Esporte e Vida</h2>
+      <p>Nossa missão é promover a inclusão social e o desenvolvimento humano de jovens em situação de vulnerabilidade por meio do acesso ao esporte, à educação e à cidadania.</p>
+
+      <!-- Layout em Grid de 12 Colunas -->
+      <div class="grid">
+        <figure class="col-12 col-md-6">
+          <img 
+            src="img/criasesporte.png" 
+            alt="Grupo de crianças e adolescentes sorrindo e uniformizados no centro de uma quadra poliesportiva durante aula de basquete."
+            width="800"
+            height="450"
+          >
+          <figcaption>Jovens participantes do projeto durante treino esportivo comunitário.</figcaption>
+        </figure>
+
+        <div class="col-12 col-md-6 grid">
+          <article class="col-12">
+            <h3>Nossa Visão</h3>
+            <p>Ser referência nacional no uso do esporte como ferramenta de transformação social e formação de futuros cidadãos.</p>
+          </article>
+
+          <article class="col-12">
+            <h3>Nossos Valores</h3>
+            <ul>
+              <li>Inclusão e Respeito</li>
+              <li>Trabalho em Equipe</li>
+              <li>Disciplina e Empatia</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+<section>
+  <h2>Nosso Impacto</h2>
+  <div class="grid">
+    <div class="col-12 col-md-6">
+      <p>Já atendemos mais de 5.000 crianças e adolescentes em diversas modalidades esportivas.</p>
+    </div>
+    <div class="col-12 col-md-6">
+      <!-- Elemento Canvas onde o Chart.js renderizará o gráfico -->
+      <canvas id="graficoImpacto" aria-label="Gráfico de distribuição de alunos por esporte" role="img"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- <section>
+      <h2>Nosso Impacto</h2>
+      <div class="grid">
+        <div class="col-12 col-md-6">
+          <p>Já atendemos mais de 5.000 crianças e adolescentes em diversas modalidades esportivas.</p>
+        </div>
+        <figure class="col-12 col-md-6">
+          <img 
+            src="img/banner.png" 
+            alt="Infográfico com ilustrações de atletas indicando a marca de mais de 5.000 jovens atendidos em nossas unidades."
+            width="600"
+            height="600"
+          >
+        </figure>
+      </div>
+    </section> -->
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ONG Esporte e Vida. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
